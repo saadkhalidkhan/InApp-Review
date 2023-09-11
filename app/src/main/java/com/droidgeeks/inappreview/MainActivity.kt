@@ -50,9 +50,11 @@ class MainActivity : AppCompatActivity() {
      * Call this method when you want to show the in-app rating dialog
      */
     private fun startReviewFlow() {
-        val flow = reviewManager.launchReviewFlow(this, reviewInfo)
-        flow.addOnCompleteListener {
-            Log.d("InAppReview", "Rating complete")
+        if (::reviewManager.isInitialized) {
+            val flow = reviewManager.launchReviewFlow(this, reviewInfo)
+            flow.addOnCompleteListener {
+                Log.d("InAppReview", "Rating complete")
+            }
         }
     }
 }
